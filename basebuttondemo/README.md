@@ -3,7 +3,7 @@
 Tiny **Primary Button** component with fixed sizes matching Figma.  
 Typed API, Tailwind-friendly, easy to extend.
 
-![Preview](public/referenceButtons.png)
+
 
 ## Quick start
 ```bash
