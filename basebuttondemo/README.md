@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reusable Button (Next.js + Tailwind)
 
-## Getting Started
+Tiny **Primary Button** component with fixed sizes matching Figma.  
+Typed API, Tailwind-friendly, easy to extend.
 
-First, run the development server:
+![Preview](public/referenceButtons.png)
 
+## Quick start
 ```bash
+npm i
+npm i clsx tailwind-merge
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
+```tsx
+import BaseButton from "@/components/BaseButton";
+import Image from "next/image";
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+const Arrow = () => (
+  <Image src="/SystemIcons.svg" alt="" width={24} height={24} aria-hidden />
+);
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+export default function Demo() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <BaseButton text="Large" hierarchy="primary" size="lg" icon={<Arrow />} />
+      <BaseButton text="Large" hierarchy="primary" size="lg" icon={<Arrow />} iconPosition="right" />
+      <BaseButton text="Large" hierarchy="primary" size="lg" />
+    </div>
+  );
+}
+```
 
-## Learn More
+## Props (common)
+`text`, `hierarchy` (`primary|secondary|tertiary`), `size` (`lg|md|sm|xs`),  
+`radius` (`square|rounded|circle`), `icon` / `iconPosition` (`left|right`),  
+`disabled`, `isLoading`, `className`, `buttonType`.
 
-To learn more about Next.js, take a look at the following resources:
+## Figma sizes (Primary)
+- **Large**: `122×62` (with icon) / `90×62` (no icon)  
+- **Medium**: `123×54` (with icon) / `91×54` (no icon)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Files
+```
+src/components/BaseButton.tsx
+src/utils/cn.ts           # twMerge(clsx(...))
+public/SystemIcons.svg
+public/referenceButtons.png
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT
